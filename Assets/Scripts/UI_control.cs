@@ -3,8 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Face
+{
+	Normal=0,
+	Anger=1,
+	Happy=2
+}
 
-
+public enum Pose
+{
+	Normal=0
+}
 
 public enum Stat
 {
@@ -12,6 +21,10 @@ public enum Stat
 	Hunger = 1, 
 	Life = 2
 }
+		
+
+
+
 
 public class UI_control : MonoBehaviour {
 
@@ -57,6 +70,10 @@ public class UI_control : MonoBehaviour {
 
 	public void ButtonEvent(int num)
 	{
+
+
+
+
 
 
 
