@@ -8,6 +8,14 @@ public class Zombie : MonoBehaviour {
 	public int _hungry{ get; private set;}
 	public int _life{ get; private set;}
 
+
+
+	public Sprite [] head = new Sprite[3]; //머리 파츠
+	public Sprite [] body = new Sprite[3]; //바디 파츠
+	public SpriteRenderer headOn; //현재 머리
+	public SpriteRenderer bodyOn; //현재 바디
+
+
 	public enum Stat
 	{
 		Love = 0, 
@@ -22,11 +30,16 @@ public class Zombie : MonoBehaviour {
 			_hungry = DataloadMng.GetInstance.HungerStat;
 			_life = DataloadMng.GetInstance.LifeStat;
 	
+
+		SetImage ();
+
+
+
+
 	}
 
 
-
-	public void TransParameter(Stat bartype, int stat)
+	public void TransParameter(Stat bartype, int stat)	//스탯 변화
 	{
 
 
@@ -60,12 +73,11 @@ public class Zombie : MonoBehaviour {
 
 
 		Statchanges ();
-	
-	
-	
+		SetImage ();
+
 	}
 
-	public void SetParameter(Stat bartype, int stat)
+	public void SetParameter(Stat bartype, int stat) 	//스탯 고정
 	{
 	
 		switch ((int)bartype) {
@@ -83,17 +95,32 @@ public class Zombie : MonoBehaviour {
 		}
 
 		Statchanges ();
-	
+		SetImage ();
 	}
 
 
-	void Statchanges()
+	void Statchanges() //스탯 변동시 실행
 	{
 
 		DataloadMng.GetInstance.SaveData ();
 
 
 	}
+
+
+
+
+
+	void SetImage () //바디 이미지 체인.
+	{
+
+
+	//	headOn.sprite = head [0];
+	//	bodyOn.sprite = body [0];
+
+
+	}
+
 
 
 

@@ -1410,6 +1410,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f4ef319e67074eb36dfeb8da0a6c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  body:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  headOn: {fileID: 0}
+  bodyOn: {fileID: 0}
 --- !u!1 &1352672112
 GameObject:
   m_ObjectHideFlags: 0
