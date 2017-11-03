@@ -42,4 +42,8 @@ public class GameData : Singleton<GameData> {
         }
         gameDataDictionary.Add(directory, data);
     }
+    public Dictionary<int, Dictionary<string, string>> GetData(string dataName)
+    {
+        return gameDataDictionary[dataName];
+    }
 }

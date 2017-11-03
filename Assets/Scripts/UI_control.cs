@@ -67,7 +67,7 @@ public class UI_control : MonoBehaviour {
 
 			if(bar [i].value!=value[i])
 			{
-				float temp = 50f * Time.deltaTime;
+				float temp = 100f * Time.deltaTime;
 				if (value [i] - bar [i].value > 0 && value [i] - bar [i].value > temp)
 					bar [i].value += temp;
 				else if (value [i] - bar [i].value < 0 && bar [i].value - value [i] > temp)
@@ -89,10 +89,9 @@ public class UI_control : MonoBehaviour {
 
 	}	
 
-	public void SetAnswer(string texting){
-		for (int i = 0; i < 3; i++) {
-			buttontexts [i].text = texting; 
-		}
+	public void SetAnswer(int num, string texting){
+
+			buttontexts [num].text = texting; 
 	}
 
 
