@@ -55,13 +55,12 @@ public class UI_control : MonoBehaviour {
 	}
 
 
-	public int ButtonEvent(int num)
+	public void ButtonEvent(int num)
 	{
-		
-		return num;
+
+
 
 	}
-
 
 
 
