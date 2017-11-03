@@ -40,6 +40,8 @@ public class UI_control : MonoBehaviour {
 	 */
 	//bar0: love bar1: hunger bar2: life
 
+
+
 	public void TransParameter(Stat bartype, int stat)
 	{
 		bar[(int)bartype].value +=stat;
