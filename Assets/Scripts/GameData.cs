@@ -8,6 +8,11 @@ public class GameData : Singleton<GameData> {
     Dictionary<string, Dictionary<int, Dictionary<string, string>>> gameDataDictionary
         = new Dictionary<string, Dictionary<int, Dictionary<string, string>>>();
 
+    private void Awake()
+    {
+        LoadData("Question");
+        LoadData("Answer");
+    }
     private void LoadData(string directory)
     {
         string[] line = null;
