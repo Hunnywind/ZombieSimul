@@ -119,22 +119,48 @@ public class Zombie : MonoBehaviour {
 	}
 
 
-
-	void Update()
+	public void CalculatingEnding ()
 	{
 
+		int endingnumber;
+		int temp = _love - _hungry;
+
+		if (temp > 0) {
+			if (temp > 33) 
+			{
+				if (temp > 67) 
+					endingnumber = 5;
+				else
+					endingnumber = 4;
+			}
+			else
+				endingnumber = 3;	
 
 
-		TransCharacter (Face.Anger);
+		}
+		else 
+		{
+
+			if (temp < -33) 
+			{
+				if (temp < -66) 
+					endingnumber = 8;
+				else
+					endingnumber = 7;
+			}
+			else
+				endingnumber = 6;	
+			
+
+		}
 
 
-
-
-
+		GameMng.GetInstance.Ending(endingnumber);
 
 
 
 	}
+
 
 	public void TransCharacter(Face face) //바디 이미지 체인.
 	{
@@ -152,7 +178,7 @@ public class Zombie : MonoBehaviour {
 			temp2 = 2;
 
 		bodyOn.sprite = body [temp];
-		headOn.sprite = body [5*temp2+temp];
+		headOn.sprite = head [5*temp2+temp];
 
 
 	}
