@@ -33,7 +33,7 @@ public class UI_control : MonoBehaviour {
 
 	void Start()
 	{
-		Zombiescript = GameObject.Find ("zombie").GetComponent<Zombie> ();
+		Zombiescript = GameObject.Find ("Zombie").GetComponent<Zombie> ();
 		value[0]=Zombiescript._love;
 		value[1]=Zombiescript._hungry;
 		value[2]=Zombiescript._life;
@@ -111,7 +111,7 @@ public class UI_control : MonoBehaviour {
 
 	public void ButtonEvent(int num)
 	{
-
+        DialogMng.GetInstance.Response(num);
 
 
 
