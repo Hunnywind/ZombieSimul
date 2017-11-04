@@ -41,6 +41,8 @@ public Zombie _zombie;
                 _time = 0;
                 if(_day > 3)
                 {
+					GameMng.GetInstance._isPlaying = false;
+					_time--;
 					_day--;
 					_zombie.CalculatingEnding ();
 		

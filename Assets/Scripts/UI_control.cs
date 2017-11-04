@@ -35,11 +35,13 @@ public class UI_control : MonoBehaviour {
 
 	void Start()
 	{
+		
 		Zombiescript = GameObject.Find ("Zombie").GetComponent<Zombie> ();
 		value[0]=Zombiescript._love;
 		value[1]=Zombiescript._hungry;
 		value[2]=Zombiescript._life;
 		buttonsetoriginpos = buttonset.position;
+		buttonset.position = new Vector3 (0, -10, 0);
 		SetParameter ();
 	
 	}
@@ -106,12 +108,14 @@ public class UI_control : MonoBehaviour {
 
 	bool UIup=false;
 
+	bool firsttime=false;
+
 	IEnumerator settingTalk(string text)
 	{
+		Debug.Log ("a");
 		charactertext.text = "";
 		yield return new WaitForSeconds (0.05f);
 		for (int i=0; i < text.Length; i++) 
-		
 		{
 		
 			charactertext.text = text.Substring (0, i);
@@ -119,10 +123,17 @@ public class UI_control : MonoBehaviour {
 
 		}
 		charactertext.text = text;
-
 		UIup = true;
 
+		if(firsttime==false)
+		{
+			firsttime=true;
+			StartCoroutine ("buttonUIup");
 
+		}
+
+
+		yield break;
 
 
 
@@ -148,34 +159,19 @@ public class UI_control : MonoBehaviour {
 
 	public Animator [] buttons = new Animator[3];
 
-	bool poping=false;
-	bool pushing=false;
+	bool pushing=true;
+
 	public void Buttondown(int num)
 	{
 	
-		if (poping == false&&pushing==false) {
-			pushing = true;
+		if (pushing == false) {
 			buttons [num].SetTrigger ("push");
-		}
-	}
-	public void Buttonup(int num)
-	{
-		if (poping == false) {
-			buttons [num].SetTrigger ("up");
-			pushing = false;
-
-		}
-	}
-	public void Buttonpoping(int num)
-	{
-		if (poping == false) {
-			buttons [num].SetTrigger ("poping");
-			poping = true;
-			pushing = false;
-			ButtonEvent(num);
+			pushing=true;
+			ButtonEvent (num);
+			StopCoroutine ("buttonUIdown");
 			StartCoroutine ("buttonUIdown");
-
 		}
+
 	}
 
 
@@ -188,19 +184,24 @@ public class UI_control : MonoBehaviour {
 		
 			buttonset.Translate (0, -10*dtime, 0);
 			yield return null;
+			dtime = Time.deltaTime;
 		}
 
 		buttonset.position = new Vector3 (0, -10, 0);
 
+
 	
-		while (UIup) 
+		while (UIup==false) 
 		{
-		
-			StartCoroutine ("buttonUIup");
-			UIup = false;
-		
+			
+			yield return null;
+
 		}
-	
+		StopCoroutine ("buttonUIdown");
+		StartCoroutine ("buttonUIup");
+		UIup = false;
+		yield break;
+
 	}
 
 	IEnumerator buttonUIup()
@@ -217,11 +218,13 @@ public class UI_control : MonoBehaviour {
 
 			buttonset.Translate (0, 10*dtime, 0);
 			yield return null;
+			dtime = Time.deltaTime;
 		}
 
-		buttonset.position = buttonsetoriginpos;
-		poping = false;
 
+		buttonset.position = buttonsetoriginpos;
+		pushing = false;
+		yield break;
 	}
 
 
