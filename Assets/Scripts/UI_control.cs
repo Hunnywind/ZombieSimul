@@ -226,7 +226,7 @@ public class UI_control : MonoBehaviour {
 			line [imsi].position = new Vector3 (0, 0, 0);
 			yield return new WaitForSecondsRealtime (2f);
 			while (line [imsi].position.x < 10) {
-				line [imsi].Translate (Time.unscaledDeltaTime * 20, 0, 0);
+				line [imsi].Translate (Time.unscaledDeltaTime * 30, 0, 0);
 				yield return null;
 			}
 			line [imsi].gameObject.SetActive (false);
