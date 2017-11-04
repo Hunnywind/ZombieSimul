@@ -31,51 +31,58 @@ public class DialogMng : Singleton<DialogMng> {
     }
     public void ShowDialog()
 	{
-	if(GameMng.GetInstance._isPlaying==true)
-	 {
-		var ranValue = Random.Range (0, _qData.Count);
-		bool checkDupli = true;
-		while (checkDupli) {
-			checkDupli = false;
-			foreach (var item in _usedQuestion) {
-				if (ranValue == item) {
-					checkDupli = true;
-				}
-			}
-			ranValue = Random.Range (0, _qData.Count);
-		}
+	    if(GameMng.GetInstance._isPlaying==true)
+	     {
+		    var ranValue = Random.Range (0, _qData.Count);
+		    bool checkDupli = true;
+		    while (checkDupli) {
+			    checkDupli = false;
+			    foreach (var item in _usedQuestion) {
+				    if (ranValue == item) {
+					    checkDupli = true;
+				    }
+			    }
+			    ranValue = Random.Range (0, _qData.Count);
+		    }
         
-		_uiControl.SetTalk (_qData [ranValue] ["Question"]);
-		_usedQuestion.Add (ranValue);
-		switch (_qData [ranValue] ["Face"]) {
-		case "0":
-			_zombie.TransCharacter (Zombie.Face.Normal);
-			break;
-		case "1":
-			_zombie.TransCharacter (Zombie.Face.Happy);
-			break;
-		case "2":
-			_zombie.TransCharacter (Zombie.Face.Sadness);
-			break;
-		case "3":
-			_zombie.TransCharacter (Zombie.Face.Anger);
-			break;
-		case "4":
-			_zombie.TransCharacter (Zombie.Face.Surprise);
-			break;
-		default:
-			break;
-		}
+		    _uiControl.SetTalk (_qData [ranValue] ["Question"]);
+		    _usedQuestion.Add (ranValue);
+		    switch (_qData [ranValue] ["Face"]) {
+		    case "0":
+			    _zombie.TransCharacter (Zombie.Face.Normal);
+			    break;
+		    case "1":
+			    _zombie.TransCharacter (Zombie.Face.Happy);
+			    break;
+		    case "2":
+			    _zombie.TransCharacter (Zombie.Face.Sadness);
+			    break;
+		    case "3":
+			    _zombie.TransCharacter (Zombie.Face.Anger);
+			    break;
+		    case "4":
+			    _zombie.TransCharacter (Zombie.Face.Surprise);
+			    break;
+		    default:
+			    break;
+		    }
 
-		int buttonNum = 0;
-		for (int i = 0; i < _aData.Count; i++) {
-			if (_aData [i] ["Qid"].Equals (ranValue.ToString ())) {
-				_uiControl.SetAnswer (buttonNum, _aData [i] ["Answer"], _aData[i]["Love"], _aData[i]["Hunger"], _aData[i]["Life"]);
-				_answerId [buttonNum] = i;
-				buttonNum++;
-			}
-		}
-	}
+		    int buttonNum = 0;
+            var ranNumList = new List<int>();
+            ranNumList.Add(0);
+            ranNumList.Add(1);
+            ranNumList.Add(2);
+
+		    for (int i = 0; i < _aData.Count; i++) {
+			    if (_aData [i] ["Qid"].Equals (ranValue.ToString ())) {
+                    buttonNum = Random.Range(0, ranNumList.Count);
+				    _uiControl.SetAnswer (buttonNum, _aData [i] ["Answer"], _aData[i]["Love"], _aData[i]["Hunger"], _aData[i]["Life"]);
+				    _answerId [buttonNum] = i;
+                    ranNumList.Remove(buttonNum);
+			    }
+		    }
+            ranNumList.Clear();
+	    }
     }
     public void Response(int answerNum)
     {
