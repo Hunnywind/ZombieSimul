@@ -10,11 +10,9 @@ public class StartScene : MonoBehaviour {
 
 	void Start()
 	{
+        SoundMng.GetInstance.PlayBGM(0);
 
-
-		StartCoroutine ("fadein");
-
-
+        StartCoroutine ("fadein");
 	}
 
 
