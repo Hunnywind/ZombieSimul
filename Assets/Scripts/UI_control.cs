@@ -21,6 +21,8 @@ public class UI_control : MonoBehaviour {
 	public Text [] buttontexts = new Text[3];
 	public Text charactertext;
 	private float[] value = new float[3];
+	public Transform buttonset;
+	Vector3 buttonsetoriginpos;
 
 	/*
 	 * SetTalk(텍스트): 질문, 일반 말
@@ -37,7 +39,9 @@ public class UI_control : MonoBehaviour {
 		value[0]=Zombiescript._love;
 		value[1]=Zombiescript._hungry;
 		value[2]=Zombiescript._life;
+		buttonsetoriginpos = buttonset.position;
 		SetParameter ();
+	
 	}
 
 
@@ -96,17 +100,42 @@ public class UI_control : MonoBehaviour {
 	public void SetTalk(string texting)
 	{
 
-
-
-		charactertext.text = texting;
-
+		StartCoroutine ("settingTalk",texting);
 
 	}	
 
+	bool UIup=false;
+
+	IEnumerator settingTalk(string text)
+	{
+		charactertext.text = "";
+		yield return new WaitForSeconds (0.05f);
+		for (int i=0; i < text.Length; i++) 
+		
+		{
+		
+			charactertext.text = text.Substring (0, i);
+			yield return new WaitForSeconds (0.05f);
+
+		}
+		charactertext.text = text;
+
+		UIup = true;
+
+
+
+
+
+	}
+
+
+
+
+	string[] Tempmessage = new string[3];
+
 	public void SetAnswer(int num, string texting){
 
-			buttontexts [num].text = texting; 
-	
+		 Tempmessage [num] = texting;
 	
 	}
 
@@ -144,15 +173,54 @@ public class UI_control : MonoBehaviour {
 			poping = true;
 			pushing = false;
 			ButtonEvent(num);
+			StartCoroutine ("buttonUIdown");
+
 		}
 	}
 
 
+	IEnumerator buttonUIdown()
+	{
+		yield return new WaitForSeconds (0.2f);
+		float dtime = Time.deltaTime;
+		while  (buttonset.position.y - 10*dtime > -10) 
+		{
+		
+			buttonset.Translate (0, -10*dtime, 0);
+			yield return null;
+		}
 
-	void update()
+		buttonset.position = new Vector3 (0, -10, 0);
+
+	
+		while (UIup) 
+		{
+		
+			StartCoroutine ("buttonUIup");
+			UIup = false;
+		
+		}
+	
+	}
+
+	IEnumerator buttonUIup()
 	{
 
+		for(int i=0;i<3;i++)
+		{
+			buttontexts [i].text = Tempmessage [i];
+		}
 
+		float dtime = Time.deltaTime;
+		while  (buttonset.position.y + 10*dtime < buttonsetoriginpos.y) 
+		{
+
+			buttonset.Translate (0, 10*dtime, 0);
+			yield return null;
+		}
+
+		buttonset.position = buttonsetoriginpos;
+		poping = false;
 
 	}
 
