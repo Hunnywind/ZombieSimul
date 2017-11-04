@@ -75,10 +75,13 @@ public class Zombie : MonoBehaviour {
 			break;
 		}
 
+        if(_life <= 0)
+            GameMng.GetInstance.Ending(0);
+        else if (_hungry <= 0)
+            GameMng.GetInstance.Ending(1);
 
 
-
-		Statchanges ();
+        Statchanges ();
 	
 	}
 
@@ -130,12 +133,12 @@ public class Zombie : MonoBehaviour {
 			if (temp > int.Parse(endingValue[0]["value"])) 
 			{
 				if (temp > int.Parse(endingValue[1]["value"])) 
-					endingnumber = 5;
-				else
 					endingnumber = 4;
+				else
+					endingnumber = 3;
 			}
 			else
-				endingnumber = 3;	
+				endingnumber = 2;	
 
 
 		}
@@ -145,12 +148,12 @@ public class Zombie : MonoBehaviour {
 			if (temp < int.Parse(endingValue[3]["value"])) 
 			{
 				if (temp < int.Parse(endingValue[4]["value"])) 
-					endingnumber = 8;
-				else
 					endingnumber = 7;
+				else
+					endingnumber = 6;
 			}
 			else
-				endingnumber = 6;	
+				endingnumber = 5;	
 			
 
 		}
