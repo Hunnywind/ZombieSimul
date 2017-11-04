@@ -60,7 +60,7 @@ public class FadeControl : MonoBehaviour {
 			yield break;
 		}
 		else
-			SceneManager.LoadScene ("Start");
+			SceneManager.LoadScene ("start2");
 		
 
 		}
