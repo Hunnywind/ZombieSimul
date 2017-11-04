@@ -11,9 +11,11 @@ public class DialogMng : Singleton<DialogMng> {
 
     private Dictionary<int, Dictionary<string, string>> _qData = new Dictionary<int, Dictionary<string, string>>();
     private Dictionary<int, Dictionary<string, string>> _aData = new Dictionary<int, Dictionary<string, string>>();
+    private List<int> _usedQuestion = new List<int>();
 
     private int _questionId;
     private int[] _answerId = new int[3];
+    
 
     void Start()
     {
@@ -25,11 +27,27 @@ public class DialogMng : Singleton<DialogMng> {
         _qData = GameData.GetInstance.GetData("Question");
         _aData = GameData.GetInstance.GetData("Answer");
         ShowDialog();
+        _usedQuestion.Clear();
     }
     public void ShowDialog()
     {
         var ranValue = Random.Range(0, _qData.Count);
+        bool checkDupli = true;
+        while (checkDupli)
+        {
+            checkDupli = false;
+            foreach (var item in _usedQuestion)
+            {
+                if (ranValue == item)
+                {
+                    checkDupli = true;
+                }
+            }
+            ranValue = Random.Range(0, _qData.Count);
+        }
+        
         _uiControl.SetTalk(_qData[ranValue]["Question"]);
+        _usedQuestion.Add(ranValue);
         switch (_qData[ranValue]["Face"])
         {
             case "0":
