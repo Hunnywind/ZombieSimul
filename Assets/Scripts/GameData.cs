@@ -12,6 +12,7 @@ public class GameData : Singleton<GameData> {
     {
         LoadData("Question");
         LoadData("Answer");
+        LoadData("NormalEndings");
     }
     private void LoadData(string directory)
     {

@@ -121,14 +121,15 @@ public class Zombie : MonoBehaviour {
 
 	public void CalculatingEnding ()
 	{
+        var endingValue = GameData.GetInstance.GetData("NormalEndings");
 
 		int endingnumber;
 		int temp = _love - _hungry;
 
 		if (temp > 0) {
-			if (temp > 33) 
+			if (temp > int.Parse(endingValue[0]["value"])) 
 			{
-				if (temp > 67) 
+				if (temp > int.Parse(endingValue[1]["value"])) 
 					endingnumber = 5;
 				else
 					endingnumber = 4;
@@ -141,9 +142,9 @@ public class Zombie : MonoBehaviour {
 		else 
 		{
 
-			if (temp < -33) 
+			if (temp < int.Parse(endingValue[3]["value"])) 
 			{
-				if (temp < -66) 
+				if (temp < int.Parse(endingValue[4]["value"])) 
 					endingnumber = 8;
 				else
 					endingnumber = 7;
