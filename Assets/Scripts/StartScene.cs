@@ -40,7 +40,7 @@ public class StartScene : MonoBehaviour {
 			SceneManager.LoadScene ("prologue");
 		else if (num == 1)
 			SceneManager.LoadScene ("credit");
-
+		
 	}
 
 	public void Click(int num)

@@ -323,16 +323,18 @@ public class Zombie : MonoBehaviour {
 
 		int temp=facetype;
 		int temp2;
-		if (_love > 50 && _hungry > 50) {
+		if (_hungry > 50) {
 
-			if (_love < _hungry)
+			if (_love >= _hungry)
 				temp2 = 1;
 			else
-				temp2 = 0;
+				temp2 = 2;
 
-		} else
-			temp2 = 2;
+		} 
 
+		else {
+			temp2 = 0;
+		}
 		bodyOn.sprite = body [temp];
 		headOn.sprite = head [5*temp2+temp];
 		feeling.gameObject.SetActive (true);
@@ -342,17 +344,18 @@ public class Zombie : MonoBehaviour {
 
 
 		temp=(int)Tempface;
+		if (_hungry > 50) {
 
-		if (_love > 50 && _hungry > 50) {
-
-			if (_love > _hungry)
+			if (_love >= _hungry)
 				temp2 = 1;
 			else
-				temp2 = 0;
+				temp2 = 2;
 
-		} else
-			temp2 = 2;
+		} 
 
+		else {
+			temp2 = 0;
+		}
 		bodyOn.sprite = body [temp];
 		headOn.sprite = head [5*temp2+temp];
 
