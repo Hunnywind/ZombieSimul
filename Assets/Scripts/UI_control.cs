@@ -173,6 +173,11 @@ public class UI_control : MonoBehaviour {
 	}
 
 
+	public bool daychange=true;
+
+
+
+
 	IEnumerator buttonUIdown()
 	{
         foreach (var item in _answerIcons)
@@ -192,8 +197,6 @@ public class UI_control : MonoBehaviour {
 		bubble.alpha = 0;
 		buttonset.position = new Vector3 (0, -10, 0);
 
-
-	
 		StopCoroutine ("buttonUIdown");
 		StartCoroutine ("buttonUIup");
 
@@ -202,11 +205,35 @@ public class UI_control : MonoBehaviour {
 	}
 
 
+	int imsi=0;
+
+	public Transform [] line= new Transform[3];
+
 
 
 
 	IEnumerator buttonUIup()
 	{
+		float dtime;
+		if (daychange == true) {
+			Time.timeScale = 0;
+			dtime = Time.unscaledDeltaTime;
+			while (line [imsi].position.x + dtime * 20 < 0) {
+				line [imsi].Translate (dtime * 20, 0, 0);
+				yield return null;
+				dtime = Time.unscaledDeltaTime;
+			}
+			line [imsi].position = new Vector3 (0, 0, 0);
+			yield return new WaitForSecondsRealtime (2f);
+			while (line [imsi].position.x < 10) {
+				line [imsi].Translate (Time.unscaledDeltaTime * 20, 0, 0);
+				yield return null;
+			}
+			line [imsi].gameObject.SetActive (false);
+			Time.timeScale = 1;
+			imsi++;
+			daychange = false;
+		}
 
 
 
@@ -249,7 +276,7 @@ public class UI_control : MonoBehaviour {
             }
         }
 
-		float dtime = Time.deltaTime;
+		dtime = Time.deltaTime;
 		while  (buttonset.position.y + 10*dtime < buttonsetoriginpos.y) 
 		{
 			buttonset.Translate (0, 10*dtime, 0);

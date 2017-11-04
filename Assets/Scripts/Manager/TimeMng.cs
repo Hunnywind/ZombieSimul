@@ -17,6 +17,7 @@ public class TimeMng : Singleton<TimeMng> {
 
 
 
+
 public Zombie _zombie;
 
     void Start()
@@ -29,7 +30,13 @@ public Zombie _zombie;
         _time = 0;
         _level = 0;
         TextApply();
-    }
+	
+}
+
+
+
+
+
     public void LevelUp()
     {
         _level++;
@@ -40,7 +47,10 @@ public Zombie _zombie;
             if(_time > 2)
             {
                 _day++;
-                _time = 0;
+				if (_day == 2 || _day == 3) {
+					GameObject.Find("UI_control").GetComponent<UI_control>().daychange = true;
+				}
+		_time = 0;
                 if(_day > 3)
                 {
 					GameMng.GetInstance._isPlaying = false;
