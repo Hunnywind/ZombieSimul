@@ -39,6 +39,10 @@ public class DialogMng : Singleton<DialogMng> {
 		    while (checkDupli) {
                 ranValue = Random.Range(0, _qData.Count);
                 checkDupli = false;
+                //if(TimeMng.GetInstance._day - 1 != int.Parse(_qData[ranValue]["Day"]))
+                //{
+                //    checkDupli = true;
+                //}
 			    foreach (var item in _usedQuestion) {
 				    if (ranValue == item) {
 					    checkDupli = true;
