@@ -15,7 +15,7 @@ public class DataloadMng : Singleton<DataloadMng> {
 	void Awake () {
 	
 		LoveStat = 50;
-		HungerStat = 50;
+		HungerStat = 100;
 		LifeStat = 7;
 		TextLine = PlayerPrefs.GetInt ("TextLine", 0);
 		DontDestroyOnLoad (gameObject);
@@ -38,8 +38,8 @@ public class DataloadMng : Singleton<DataloadMng> {
 	public void ResetData()
 	{
 		PlayerPrefs.SetInt ("LoveStat", 50);
-		PlayerPrefs.SetInt ("HungerStat", 50);
-		PlayerPrefs.SetInt ("LifeStat", 10);
+		PlayerPrefs.SetInt ("HungerStat", 100);
+		PlayerPrefs.SetInt ("LifeStat", 7);
 		PlayerPrefs.SetInt ("TextLine", 0);
 	}
 

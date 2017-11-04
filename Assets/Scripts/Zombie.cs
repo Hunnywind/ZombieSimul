@@ -170,7 +170,7 @@ public class Zombie : MonoBehaviour {
 
 		if (_life <= 0)
 			fadecontrol.fadeout (0);
-		else if (_hungry >= 100)
+		else if (_hungry <= 0)
 			fadecontrol.fadeout (1);
 	StartCoroutine ("TransCharacterSupporter");
         Statchanges ();
@@ -221,7 +221,7 @@ public class Zombie : MonoBehaviour {
 		int endingnumber;
 		int temp = _love - _hungry;
 
-		if (_life == 1 && _love >= 90 && _hungry >= 90) 
+		if (_life == 1 && _love >= 90 && _hungry <= 10) 
 		{
 		
 			endingnumber = 8;
@@ -317,7 +317,7 @@ public class Zombie : MonoBehaviour {
 		int temp2;
 		if (_love > 50 && _hungry > 50) {
 
-			if (_love > _hungry)
+			if (_love < _hungry)
 				temp2 = 1;
 			else
 				temp2 = 0;
