@@ -13,6 +13,7 @@ public class Zombie : MonoBehaviour {
 	public Image headOn; //현재 머리
 	public Image bodyOn; //현재 바디
 
+	public FadeControl fadecontrol;
 
 	public enum Stat
 	{
@@ -75,11 +76,10 @@ public class Zombie : MonoBehaviour {
 			break;
 		}
 
-        if(_life <= 0)
-            GameMng.GetInstance.Ending(0);
-        else if (_hungry <= 0)
-            GameMng.GetInstance.Ending(1);
-
+		if (_life <= 0)
+			fadecontrol.fadeout (0);
+		else if (_hungry <= 0)
+			fadecontrol.fadeout (1);
 
         Statchanges ();
 	
@@ -159,7 +159,7 @@ public class Zombie : MonoBehaviour {
 		}
 
 
-		GameMng.GetInstance.Ending(endingnumber);
+		fadecontrol.fadeout(endingnumber);
 
 
 

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameMng : Singleton<GameMng> {
 
 
+	public bool _isPlaying=true;  
+
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -17,16 +20,7 @@ public class GameMng : Singleton<GameMng> {
     }
 
 
-	public void Ending(int num)
-	{
 
-
-		PlayerPrefs.SetInt ("ending", num);
-		SceneManager.LoadScene("EndingScene");
-
-
-
-	}
 
 
 }
