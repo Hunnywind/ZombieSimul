@@ -545,6 +545,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114707315684442850, guid: 11e8769038f539d4d950a1a6868c2b46,
         type: 2}
+      propertyPath: sceneBGM.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114707315684442850, guid: 11e8769038f539d4d950a1a6868c2b46,
+        type: 2}
       propertyPath: soundClip.Array.size
       value: 9
       objectReference: {fileID: 0}
@@ -640,6 +645,16 @@ Prefab:
       propertyPath: SFXSource.Array.data[2]
       value: 
       objectReference: {fileID: 1855423359}
+    - target: {fileID: 114707315684442850, guid: 11e8769038f539d4d950a1a6868c2b46,
+        type: 2}
+      propertyPath: sceneBGM.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 53f2d8efb4258b94b86edcd012d4fd85, type: 3}
+    - target: {fileID: 114707315684442850, guid: 11e8769038f539d4d950a1a6868c2b46,
+        type: 2}
+      propertyPath: sceneBGM.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e69864aa6b180c45b3e7f7c1b3c9eae, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11e8769038f539d4d950a1a6868c2b46, type: 2}
   m_IsPrefabParent: 0
