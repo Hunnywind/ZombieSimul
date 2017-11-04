@@ -35,10 +35,10 @@ public class GameData : Singleton<GameData> {
         for (int i = 1; i < line.Length; i++)
         {
             values = line[i].Split(',');
-            line[i] = line[i].Replace("@", ",");
             var valueD = new Dictionary<string, string>();
             for (int j = 0; j < values.Length; j++)
             {
+                values[j] = values[j].Replace("@", ",");
                 valueD.Add(keys[j], values[j]);
             }
             data.Add(i - 1, valueD);
