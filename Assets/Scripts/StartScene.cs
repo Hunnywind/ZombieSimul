@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartScene : MonoBehaviour {
 
 	public CanvasGroup fade;
-	bool clicked=false;
+	bool clicked=true;
 
 	void Start()
 	{
@@ -14,7 +14,6 @@ public class StartScene : MonoBehaviour {
 
         StartCoroutine ("fadein");
 	}
-
 
 	IEnumerator fadein()
 	{
@@ -25,7 +24,7 @@ public class StartScene : MonoBehaviour {
 		}
 
 
-
+		clicked = false;
 	}
 
 
