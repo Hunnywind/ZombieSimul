@@ -29,11 +29,13 @@ public class GameData : Singleton<GameData> {
         }
         keys = line[0].Split(',');
 
+
         var data = new Dictionary<int, Dictionary<string, string>>();
 
         for (int i = 1; i < line.Length; i++)
         {
             values = line[i].Split(',');
+            line[i] = line[i].Replace("@", ",");
             var valueD = new Dictionary<string, string>();
             for (int j = 0; j < values.Length; j++)
             {
