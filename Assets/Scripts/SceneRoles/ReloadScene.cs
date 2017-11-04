@@ -29,18 +29,21 @@ public class ReloadScene : MonoBehaviour {
 		}
 		Yes.interactable = true;
 		No.interactable = true;
+		firstclick=false;
 		yield break;
 
 	}
 
+	bool firstclick=true;
 
 	public void buttonclick(int i)
 	{
-
-		Yes.interactable = false;
-		No.interactable = false;
-		StartCoroutine ("fadeout" + i.ToString ());
-	
+		if (firstclick == false) {
+			firstclick = true;
+			Yes.interactable = false;
+			No.interactable = false;
+			StartCoroutine ("fadeout" + i.ToString ());
+		}
 	}
 
 
