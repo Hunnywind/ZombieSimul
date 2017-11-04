@@ -70,7 +70,7 @@ public class DialogMng : Singleton<DialogMng> {
 		int buttonNum = 0;
 		for (int i = 0; i < _aData.Count; i++) {
 			if (_aData [i] ["Qid"].Equals (ranValue.ToString ())) {
-				_uiControl.SetAnswer (buttonNum, _aData [i] ["Answer"]);
+				_uiControl.SetAnswer (buttonNum, _aData [i] ["Answer"], _aData[i]["Love"], _aData[i]["Hunger"], _aData[i]["Life"]);
 				_answerId [buttonNum] = i;
 				buttonNum++;
 			}

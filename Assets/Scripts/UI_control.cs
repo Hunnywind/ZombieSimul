@@ -24,6 +24,12 @@ public class UI_control : MonoBehaviour {
 	public Transform buttonset;
 	Vector3 buttonsetoriginpos;
 
+    [SerializeField]
+    private Image[] _answerIcons;
+    [SerializeField]
+    private Sprite[] _answerIconSprites;
+    private int[] _iconTemps = new int[3];
+
 	/*
 	 * SetTalk(텍스트): 질문, 일반 말
 	 * SetAnswer(버튼번호, 텍스트): 답(버튼)
@@ -144,9 +150,29 @@ public class UI_control : MonoBehaviour {
 
 	string[] Tempmessage = new string[3];
 
-	public void SetAnswer(int num, string texting){
+	public void SetAnswer(int num, string texting, string love, string hunger, string life){
+        int lov = int.Parse(love);
+        int hun = int.Parse(hunger);
+        int lif = int.Parse(life);
 
-		 Tempmessage [num] = texting;
+        if (hun > lov && hun > 0)
+        {
+            _iconTemps[num] = 1;
+            //_answerIcons[num].gameObject.SetActive(true);
+            //_answerIcons[num].sprite = _answerIconSprites[0];
+        }
+        else if (lov > hun && hun > 0)
+        {
+            _iconTemps[num] = 0;
+            //_answerIcons[num].gameObject.SetActive(true);
+            //_answerIcons[num].sprite = _answerIconSprites[1];
+        }
+        else
+        {
+            _iconTemps[num] = 2;
+            //_answerIcons[num].gameObject.SetActive(false);
+        }
+		Tempmessage [num] = texting;
 	
 	}
 
@@ -177,6 +203,10 @@ public class UI_control : MonoBehaviour {
 
 	IEnumerator buttonUIdown()
 	{
+        foreach (var item in _answerIcons)
+        {
+            item.gameObject.SetActive(false);
+        }
 		yield return new WaitForSeconds (0.2f);
 		float dtime = Time.deltaTime;
 		while  (buttonset.position.y - 10*dtime > -10) 
@@ -210,7 +240,21 @@ public class UI_control : MonoBehaviour {
 		for(int i=0;i<3;i++)
 		{
 			buttontexts [i].text = Tempmessage [i];
-		}
+            switch (_iconTemps[i])
+            {
+                case 0:
+                    _answerIcons[i].gameObject.SetActive(true);
+                    _answerIcons[i].sprite = _answerIconSprites[0];
+                    break;
+                case 1:
+                    _answerIcons[i].gameObject.SetActive(true);
+                    _answerIcons[i].sprite = _answerIconSprites[1];
+                    break;
+                default:
+                    _answerIcons[i].gameObject.SetActive(false);
+                    break;
+            }
+        }
 
 		float dtime = Time.deltaTime;
 		while  (buttonset.position.y + 10*dtime < buttonsetoriginpos.y) 
