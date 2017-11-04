@@ -56,7 +56,6 @@ public class DialogMng : Singleton<DialogMng> {
         _zombie.TransParameter(Zombie.Stat.Love, love);
         _zombie.TransParameter(Zombie.Stat.Hunger, hunger);
         _zombie.TransParameter(Zombie.Stat.Life, life);
-
         TimeMng.GetInstance.LevelUp();
         ShowDialog();
     }

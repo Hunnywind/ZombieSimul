@@ -8,10 +8,14 @@ public class TimeMng : Singleton<TimeMng> {
     public int _time { get; private set; }
     public int _level { get; private set; }
 
+
+
     [SerializeField]
     private Text _dayText;
     [SerializeField]
     private Text _timeText;
+
+public Zombie _zombie;
 
     void Start()
     {
@@ -37,6 +41,9 @@ public class TimeMng : Singleton<TimeMng> {
                 _time = 0;
                 if(_day > 3)
                 {
+					_day--;
+					_zombie.CalculatingEnding ();
+		
                     // go ending
                 }
             }

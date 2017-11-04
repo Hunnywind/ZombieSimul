@@ -15,7 +15,7 @@ public class EndingScene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		int temp = PlayerPrefs.GetInt ("endingnumber",0);
+		int temp = PlayerPrefs.GetInt ("ending",0);
 		endingImage.sprite = endingImages [temp];
 		TextTransform.GetComponent<Text> ().text = endingText [temp];
 		StartCoroutine ("scrolling");

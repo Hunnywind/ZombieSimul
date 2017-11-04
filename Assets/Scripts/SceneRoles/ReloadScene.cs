@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class ReloadScene : MonoBehaviour {
 
 	public CanvasGroup fade;
@@ -55,6 +55,8 @@ public class ReloadScene : MonoBehaviour {
 			yield return null;
 
 		}
+
+		SceneManager.LoadScene ("intro");
 		yield break;
 
 	}
@@ -69,6 +71,7 @@ public class ReloadScene : MonoBehaviour {
 			fade.alpha += Time.deltaTime;
 			yield return null;
 		}
+		Application.Quit ();
 		yield break;
 
 	}
