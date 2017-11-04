@@ -7,12 +7,12 @@ PlayerSettings:
   productGUID: cd157526c11b12943b9ba0e7448dd7a8
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: ZombieSimul
-  productName: ZombieSimul
+  companyName: ZombieBrain
+  productName: ZombieGirlfriend
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -148,7 +148,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Cop.coew
+    Android: com.ZombieBrain.ZombieGirlfriend
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -221,11 +221,11 @@ PlayerSettings:
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
   appleEnableAutomaticSigning: 0
-  AndroidTargetDevice: 0
+  AndroidTargetDevice: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Users/theki/Documents/UnityProject/ZombieSimul/ZombieSimul.keystore
+  AndroidKeyaliasName: zombiesimul
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
