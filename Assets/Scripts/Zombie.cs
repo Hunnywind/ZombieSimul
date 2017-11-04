@@ -7,8 +7,8 @@ public class Zombie : MonoBehaviour {
 	public int _hungry{ get; private set;}
 	public int _life{ get; private set;}
 
-	public Sprite [] head = new Sprite[3]; //머리 파츠
-	public Sprite [] body = new Sprite[3]; //바디 파츠
+	public Sprite [] head = new Sprite[5]; //머리 파츠
+	public Sprite [] body = new Sprite[1]; //바디 파츠
 	public SpriteRenderer headOn; //현재 머리
 	public SpriteRenderer bodyOn; //현재 바디
 
@@ -18,6 +18,20 @@ public class Zombie : MonoBehaviour {
 		Love = 0, 
 		Hunger = 1, 
 		Life = 2
+	}
+
+	public enum Face
+	{
+		Normal=0,
+		Happy=1,
+		Sad=2,
+		Anger=3,
+		Surp=4
+	}
+
+	public enum Pose
+	{
+		Normal=0
 	}
 
 	public void Awake()
