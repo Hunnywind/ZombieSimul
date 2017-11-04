@@ -135,7 +135,7 @@ public class Zombie : MonoBehaviour {
 
 		case 1:
 			_hungry += stat;
-			Deltaparameter[1] = stat;
+			Deltaparameter[1] = 0-stat;
 			Deltaparaabs [1] = Mathf.Abs (stat);
 			if (_hungry > 100)
 				_hungry = 100;
