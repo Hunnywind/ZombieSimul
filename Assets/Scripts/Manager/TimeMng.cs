@@ -12,8 +12,10 @@ public class TimeMng : Singleton<TimeMng> {
 
     [SerializeField]
     private Text _dayText;
-    [SerializeField]
-    private Text _timeText;
+    public GameObject [] time= new GameObject[3];
+
+
+
 
 public Zombie _zombie;
 
@@ -54,17 +56,24 @@ public Zombie _zombie;
     }
     void TextApply()
     {
-        _dayText.text = "Day " + _day;
+        _dayText.text = "" + _day;
         switch (_time)
         {
-            case 0:
-                _timeText.text = "오전";
-                break;
+		case 0:
+			time [0].SetActive (true);
+			time [1].SetActive (false);
+			time [2].SetActive (false);
+		break;
             case 1:
-                _timeText.text = "오후";
-                break;
+			time [1].SetActive (true);
+			time [0].SetActive (false);
+			time [2].SetActive (false);
+		break;
             case 2:
-                _timeText.text = "저녁";
+
+			time [2].SetActive (true);
+			time [1].SetActive (false);
+			time [0].SetActive (false);
                 break;
             default:
                 break;

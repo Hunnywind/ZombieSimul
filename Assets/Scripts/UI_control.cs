@@ -17,6 +17,8 @@ public enum Stat
 
 public class UI_control : MonoBehaviour {
 
+
+
 	public Slider [] bar = new Slider[3];
 	public Text [] buttontexts = new Text[3];
 	public Text charactertext;
@@ -125,13 +127,13 @@ public class UI_control : MonoBehaviour {
         int hun = int.Parse(hunger);
         int lif = int.Parse(life);
 
-        if (hun > lov && hun > 0)
+        if (hun >= lov && hun > 0)
         {
             _iconTemps[num] = 1;
             //_answerIcons[num].gameObject.SetActive(true);
             //_answerIcons[num].sprite = _answerIconSprites[0];
         }
-        else if (lov > hun && hun > 0)
+        else if (lov > hun && lov > 0)
         {
             _iconTemps[num] = 0;
             //_answerIcons[num].gameObject.SetActive(true);
