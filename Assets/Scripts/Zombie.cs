@@ -8,6 +8,9 @@ public class Zombie : MonoBehaviour {
 	public int _hungry{ get; private set;}
 	public int _life{ get; private set;}
 
+
+	public Image feeling;
+	public Sprite [] feelings= new Sprite[2];
 	public Sprite [] head = new Sprite[15]; //머리 파츠
 	public Sprite [] body = new Sprite[5]; //바디 파츠
 	public Image headOn; //현재 머리
@@ -186,23 +189,35 @@ public class Zombie : MonoBehaviour {
 		int facetype;
 		if (Deltaparaabs [0] > Deltaparaabs [1] && Deltaparaabs [0] > (Deltaparaabs [2]*10)) {
 
-			if(Deltaparameter[0]>0)
+			if (Deltaparameter [0] > 0) {
 				facetype = 4;
-			else
-				facetype = 2;
+				feeling.sprite = feelings [0];
 
+			}
+				else {
+				facetype = 2;
+			
+				feeling.sprite = feelings [1];
+			
+			}
 
 		} else if (Deltaparaabs [1] > (Deltaparaabs [2]*10)) {
-			if(Deltaparameter[1]>0)
+			if (Deltaparameter [1] > 0) {
 				facetype = 3;
-			else
+				feeling.sprite = feelings [0];
+			} else {
 				facetype = 1;
+				feeling.sprite = feelings [0];
 
+			}
 		
 		} else {
-			if (Deltaparameter [2] < 0)
+			if (Deltaparameter [2] < 0) {
 				facetype = 3;	
-			else
+				feeling.sprite = feelings [0];
+
+			}
+				else
 				facetype = 0;	
 
 		}
@@ -221,8 +236,10 @@ public class Zombie : MonoBehaviour {
 
 		bodyOn.sprite = body [temp];
 		headOn.sprite = head [5*temp2+temp];
+		feeling.gameObject.SetActive (true);
 
 		yield return new WaitForSeconds(1f);
+		feeling.gameObject.SetActive (false);
 
 
 		temp=(int)Tempface;

@@ -17,6 +17,8 @@ public enum Stat
 
 public class UI_control : MonoBehaviour {
 
+
+
 	public Slider [] bar = new Slider[3];
 	public Text [] buttontexts = new Text[3];
 	public Text charactertext;
