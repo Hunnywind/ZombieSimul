@@ -19,6 +19,7 @@ public class DialogMng : Singleton<DialogMng> {
 
     void Start()
     {
+        SoundMng.GetInstance.PlayBGM(1);
         Init();
     }
 
@@ -36,13 +37,13 @@ public class DialogMng : Singleton<DialogMng> {
 		    var ranValue = Random.Range (0, _qData.Count);
 		    bool checkDupli = true;
 		    while (checkDupli) {
-			    checkDupli = false;
+                ranValue = Random.Range(0, _qData.Count);
+                checkDupli = false;
 			    foreach (var item in _usedQuestion) {
 				    if (ranValue == item) {
 					    checkDupli = true;
 				    }
 			    }
-			    ranValue = Random.Range (0, _qData.Count);
 		    }
         
 		    _uiControl.SetTalk (_qData [ranValue] ["Question"]);
