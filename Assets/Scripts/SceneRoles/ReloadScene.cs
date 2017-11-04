@@ -55,7 +55,8 @@ public class ReloadScene : MonoBehaviour {
 			yield return null;
 
 		}
-
+		DataloadMng.GetInstance.ResetData ();
+		Destroy (GameObject.Find ("GameManger"));
 		SceneManager.LoadScene ("intro");
 		yield break;
 

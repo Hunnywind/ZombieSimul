@@ -16,6 +16,12 @@ public class Zombie : MonoBehaviour {
 	public Image headOn; //현재 머리
 	public Image bodyOn; //현재 바디
 
+	public Image background;
+	public Sprite [] back = new Sprite[3]; //바디 파츠
+
+	public Transform blood;
+
+
 	public FadeControl fadecontrol;
 
 	public enum Stat
@@ -41,15 +47,52 @@ public class Zombie : MonoBehaviour {
 			_love = DataloadMng.GetInstance.LoveStat;
 			_hungry = DataloadMng.GetInstance.HungerStat;
 			_life = DataloadMng.GetInstance.LifeStat;
-	
+		background.sprite = back [Random.Range(0,3)];
 	}
 
 
 
+	IEnumerator blood1()
+	{
+
+		float dtime = Time.deltaTime;
+		while (blood.localScale.x - dtime > 1) 
+		{
+			float temp = blood.localScale.x-dtime;
+			blood.localScale = new Vector3 (temp, temp, temp);
+			yield return null;
+			dtime = Time.deltaTime;
+		}
+		blood.localScale = new Vector3 (1, 1, 1);
+
+
+
+
+	}
+	IEnumerator blood2()
+	{
+
+
+
+		float dtime = Time.deltaTime;
+		while (blood.localScale.x + dtime < 2) 
+		{
+			float temp = blood.localScale.x+dtime;
+			blood.localScale = new Vector3 (temp, temp, temp);
+			yield return null;
+			dtime = Time.deltaTime;
+		}
+		blood.localScale = new Vector3 (2, 2, 2);
+
+
+
+
+	}
+
 
 	int[] Deltaparameter = new int[3];
 	int[] Deltaparaabs = new int[3];
-
+	bool blooding=false;
 	public void TransParameter(Stat bartype, int stat)	//스탯 변화
 	{
 
@@ -77,12 +120,26 @@ public class Zombie : MonoBehaviour {
 
 		case 2:
 			_life += stat;
+			if (_life < 4) 
+			{
+				StopCoroutine ("blood2");
+				StartCoroutine ("blood1");
+				blooding = true;
+			}
+			if (_life < 4&&blooding==true) 
+			{
+				StopCoroutine ("blood2");
+				StartCoroutine ("blood1");
+				blooding = false;
+			}
+
+
 			Deltaparameter[2] = stat;
 			Deltaparaabs [2] = Mathf.Abs (stat);
-			if (_life > 100)
-				_life = 100;
-			if (_life < 100)
-				_life = 100;
+			if (_life > 7)
+				_life = 7;
+			if (_life < 0)
+				_life = 0;
 			break;
 		}
 
@@ -187,21 +244,21 @@ public class Zombie : MonoBehaviour {
 	{
 
 		int facetype;
-		if (Deltaparaabs [0] > Deltaparaabs [1] && Deltaparaabs [0] > (Deltaparaabs [2]*10)) {
+		if (Deltaparaabs [0] > Deltaparaabs [1] && Deltaparaabs [0] > (Deltaparaabs [2]*7)) {
 
 			if (Deltaparameter [0] > 0) {
 				facetype = 4;
-				feeling.sprite = feelings [0];
+				feeling.sprite = feelings [1];
 
 			}
 				else {
 				facetype = 2;
 			
-				feeling.sprite = feelings [1];
+				feeling.sprite = feelings [0];
 			
 			}
 
-		} else if (Deltaparaabs [1] > (Deltaparaabs [2]*10)) {
+		} else if (Deltaparaabs [1] > (Deltaparaabs [2]*7)) {
 			if (Deltaparameter [1] > 0) {
 				facetype = 3;
 				feeling.sprite = feelings [0];

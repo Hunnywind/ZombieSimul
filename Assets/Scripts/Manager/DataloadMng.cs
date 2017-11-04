@@ -14,13 +14,16 @@ public class DataloadMng : Singleton<DataloadMng> {
 	// Use this for initialization
 	void Awake () {
 	
-		LoveStat = PlayerPrefs.GetInt ("LoveStat", 50);
-		HungerStat = PlayerPrefs.GetInt ("HungerStat", 50);
-		LifeStat = PlayerPrefs.GetInt ("LifeStat", 10);
+		LoveStat = 50;
+		HungerStat = 50;
+		LifeStat = 7;
 		TextLine = PlayerPrefs.GetInt ("TextLine", 0);
 		DontDestroyOnLoad (gameObject);
 		
 	}
+
+
+
 
 
 	public void SaveData()
@@ -30,6 +33,17 @@ public class DataloadMng : Singleton<DataloadMng> {
 		PlayerPrefs.SetInt ("LifeStat", LifeStat);
 		PlayerPrefs.SetInt ("TextLine", TextLine);
 	}
+
+
+	public void ResetData()
+	{
+		PlayerPrefs.SetInt ("LoveStat", 50);
+		PlayerPrefs.SetInt ("HungerStat", 50);
+		PlayerPrefs.SetInt ("LifeStat", 10);
+		PlayerPrefs.SetInt ("TextLine", 0);
+	}
+
+
 
 
 
