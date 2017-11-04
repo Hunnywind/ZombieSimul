@@ -71,26 +71,25 @@ public class Zombie : MonoBehaviour {
 			float temp = blood.localScale.x-dtime;
 			blood.localScale = new Vector3 (temp, temp, temp);
 			yield return null;
-			dtime = Time.deltaTime;
+			dtime = Time.unscaledDeltaTime;
 		}
 		blood.localScale = new Vector3 (1, 1, 1);
 
 		while (true) 
 		{
 
-			while (bloodying.alpha > 0.5f) 
+			while (bloodying.alpha > 0f) 
 			{
-				bloodying.alpha -= Time.deltaTime*5;
+				bloodying.alpha -= Time.unscaledDeltaTime;
 				yield return null;
 			
 			}
 			while (bloodying.alpha < 1f) 
 			{
-				bloodying.alpha += Time.deltaTime*5;
+				bloodying.alpha += Time.unscaledDeltaTime;
 				yield return null;
 			}
 
-			yield return null;
 		}
 
 
@@ -146,16 +145,16 @@ public class Zombie : MonoBehaviour {
 
 		case 2:
 			_life += stat;
-			if (_life < 4) 
+			if (_life < 4 &&blooding==false) 
 			{
 				StopCoroutine ("blood2");
 				StartCoroutine ("blood1");
 				blooding = true;
 			}
-			if (_life < 4&&blooding==true) 
+			else if (_life >= 4&&blooding==true) 
 			{
-				StopCoroutine ("blood2");
-				StartCoroutine ("blood1");
+				StopCoroutine ("blood1");
+				StartCoroutine ("blood2");
 				blooding = false;
 			}
 
