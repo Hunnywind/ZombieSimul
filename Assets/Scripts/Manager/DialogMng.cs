@@ -27,8 +27,8 @@ public class DialogMng : Singleton<DialogMng> {
     {
         _qData = GameData.GetInstance.GetData("Question");
         _aData = GameData.GetInstance.GetData("Answer");
-        ShowDialog();
         _usedQuestion.Clear();
+        ShowDialog();
     }
     public void ShowDialog()
 	{
