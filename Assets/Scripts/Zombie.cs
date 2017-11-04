@@ -47,10 +47,20 @@ public class Zombie : MonoBehaviour {
 			_love = DataloadMng.GetInstance.LoveStat;
 			_hungry = DataloadMng.GetInstance.HungerStat;
 			_life = DataloadMng.GetInstance.LifeStat;
-		background.sprite = back [Random.Range(0,3)];
+
+		int temp = Random.Range (0, 10);
+
+		if(temp<7)
+		background.sprite = back [0];
+		else if(temp<9)
+		background.sprite = back [1];
+		else
+		background.sprite = back [2];
+		
+
 	}
 
-
+	public CanvasGroup bloodying;
 
 	IEnumerator blood1()
 	{
@@ -65,7 +75,23 @@ public class Zombie : MonoBehaviour {
 		}
 		blood.localScale = new Vector3 (1, 1, 1);
 
+		while (true) 
+		{
 
+			while (bloodying.alpha > 0.5f) 
+			{
+				bloodying.alpha -= Time.deltaTime*5;
+				yield return null;
+			
+			}
+			while (bloodying.alpha < 1f) 
+			{
+				bloodying.alpha += Time.deltaTime*5;
+				yield return null;
+			}
+
+			yield return null;
+		}
 
 
 	}
@@ -196,7 +222,16 @@ public class Zombie : MonoBehaviour {
 		int endingnumber;
 		int temp = _love - _hungry;
 
-		if (temp > 0) {
+		if (_life == 1 && _love >= 90 && _hungry >= 90) 
+		{
+		
+			endingnumber = 8;
+
+		
+		}
+
+
+		else if (temp > 0) {
 			if (temp > int.Parse(endingValue[0]["value"])) 
 			{
 				if (temp > int.Parse(endingValue[1]["value"])) 
