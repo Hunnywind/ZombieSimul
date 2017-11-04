@@ -31,10 +31,6 @@ public class Zombie : MonoBehaviour {
 		Surprise=4
 	}
 
-	public enum Pose
-	{
-		Normal=0
-	}
 
 	public void Awake()
 	{
@@ -46,6 +42,11 @@ public class Zombie : MonoBehaviour {
 	}
 
 
+
+
+	int[] Deltaparameter = new int[3];
+	int[] Deltaparaabs = new int[3];
+
 	public void TransParameter(Stat bartype, int stat)	//스탯 변화
 	{
 
@@ -53,6 +54,8 @@ public class Zombie : MonoBehaviour {
 		switch ((int)bartype) {
 		case 0:
 			_love += stat;
+			Deltaparameter [0] = stat;
+			Deltaparaabs [0] = Mathf.Abs (stat);
 			if (_love > 100)
 				_love = 100;
 			if (_love < 0)
@@ -61,6 +64,8 @@ public class Zombie : MonoBehaviour {
 
 		case 1:
 			_hungry += stat;
+			Deltaparameter[1] = stat;
+			Deltaparaabs [1] = Mathf.Abs (stat);
 			if (_hungry > 100)
 				_hungry = 100;
 			if (_hungry < 0)
@@ -69,6 +74,8 @@ public class Zombie : MonoBehaviour {
 
 		case 2:
 			_life += stat;
+			Deltaparameter[2] = stat;
+			Deltaparaabs [2] = Mathf.Abs (stat);
 			if (_life > 100)
 				_life = 100;
 			if (_life < 100)
@@ -80,7 +87,7 @@ public class Zombie : MonoBehaviour {
 			fadecontrol.fadeout (0);
 		else if (_hungry <= 0)
 			fadecontrol.fadeout (1);
-
+	StartCoroutine ("TransCharacterSupporter");
         Statchanges ();
 	
 	}
@@ -166,11 +173,60 @@ public class Zombie : MonoBehaviour {
 	}
 
 
+	Face Tempface;
 	public void TransCharacter(Face face) //바디 이미지 체인.
 	{
+		Tempface = face;
+	}
 
-		int temp=(int)face;
+
+	IEnumerator TransCharacterSupporter()
+	{
+
+		int facetype;
+		if (Deltaparaabs [0] > Deltaparaabs [1] && Deltaparaabs [0] > (Deltaparaabs [2]*10)) {
+
+			if(Deltaparameter[0]>0)
+				facetype = 4;
+			else
+				facetype = 2;
+
+
+		} else if (Deltaparaabs [1] > (Deltaparaabs [2]*10)) {
+			if(Deltaparameter[1]>0)
+				facetype = 3;
+			else
+				facetype = 1;
+
+		
+		} else {
+			if (Deltaparameter [2] < 0)
+				facetype = 3;	
+			else
+				facetype = 0;	
+
+		}
+
+		int temp=facetype;
 		int temp2;
+		if (_love > 50 && _hungry > 50) {
+
+			if (_love > _hungry)
+				temp2 = 1;
+			else
+				temp2 = 0;
+
+		} else
+			temp2 = 2;
+
+		bodyOn.sprite = body [temp];
+		headOn.sprite = head [5*temp2+temp];
+
+		yield return new WaitForSeconds(1f);
+
+
+		temp=(int)Tempface;
+
 		if (_love > 50 && _hungry > 50) {
 
 			if (_love > _hungry)
@@ -186,4 +242,7 @@ public class Zombie : MonoBehaviour {
 
 
 	}
+
+
+
 }

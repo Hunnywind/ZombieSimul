@@ -39,6 +39,8 @@ public class UI_control : MonoBehaviour {
 
 	Zombie Zombiescript;
 
+	public CanvasGroup bubble;
+
 	void Start()
 	{
 		
@@ -49,7 +51,7 @@ public class UI_control : MonoBehaviour {
 		buttonsetoriginpos = buttonset.position;
 		buttonset.position = new Vector3 (0, -10, 0);
 		SetParameter ();
-	
+		StartCoroutine ("buttonUIup");
 	}
 
 
@@ -104,46 +106,14 @@ public class UI_control : MonoBehaviour {
 
 	}
 
+	string TempSetTalk;
 
 	public void SetTalk(string texting)
 	{
 
-		StartCoroutine ("settingTalk",texting);
+		TempSetTalk = texting;
 
 	}	
-
-	bool UIup=false;
-
-	bool firsttime=false;
-
-	IEnumerator settingTalk(string text)
-	{
-		Debug.Log ("a");
-		charactertext.text = "";
-		yield return new WaitForSeconds (0.05f);
-		for (int i=0; i < text.Length; i++) 
-		{
-		
-			charactertext.text = text.Substring (0, i);
-			yield return new WaitForSeconds (0.05f);
-
-		}
-		charactertext.text = text;
-		UIup = true;
-
-		if(firsttime==false)
-		{
-			firsttime=true;
-			StartCoroutine ("buttonUIup");
-
-		}
-
-
-		yield break;
-
-
-
-	}
 
 
 
@@ -212,30 +182,51 @@ public class UI_control : MonoBehaviour {
 		while  (buttonset.position.y - 10*dtime > -10) 
 		{
 		
+			bubble.alpha -= 3 * dtime;
 			buttonset.Translate (0, -10*dtime, 0);
 			yield return null;
 			dtime = Time.deltaTime;
 		}
-
+		bubble.alpha = 0;
 		buttonset.position = new Vector3 (0, -10, 0);
 
 
 	
-		while (UIup==false) 
-		{
-			
-			yield return null;
-
-		}
 		StopCoroutine ("buttonUIdown");
 		StartCoroutine ("buttonUIup");
-		UIup = false;
+
 		yield break;
 
 	}
 
+
+
+
+
 	IEnumerator buttonUIup()
 	{
+
+
+
+		charactertext.text = "";
+		while (bubble.alpha < 1) {
+			bubble.alpha += Time.deltaTime * 3;
+			yield return null; 
+		}
+
+
+
+		yield return new WaitForSeconds (0.05f);
+		for (int i=0; i < TempSetTalk.Length; i++) 
+		{
+
+			charactertext.text = TempSetTalk.Substring (0, i);
+			yield return new WaitForSeconds (0.05f);
+
+		}
+		charactertext.text = TempSetTalk;
+
+
 
 		for(int i=0;i<3;i++)
 		{
@@ -259,7 +250,6 @@ public class UI_control : MonoBehaviour {
 		float dtime = Time.deltaTime;
 		while  (buttonset.position.y + 10*dtime < buttonsetoriginpos.y) 
 		{
-
 			buttonset.Translate (0, 10*dtime, 0);
 			yield return null;
 			dtime = Time.deltaTime;

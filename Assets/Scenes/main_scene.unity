@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 436375789}
   - component: {fileID: 436375791}
   - component: {fileID: 436375790}
+  - component: {fileID: 436375792}
   m_Layer: 5
   m_Name: Answer
   m_TagString: Untagged
@@ -561,6 +562,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 436375788}
+--- !u!225 &436375792
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436375788}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &480827884
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,6 +872,7 @@ MonoBehaviour:
   _answerIconSprites:
   - {fileID: 21300000, guid: 9c1b337ccd770da498e4834efcdc341c, type: 3}
   - {fileID: 21300000, guid: fab6e8407baae05438d72d80d2af2bac, type: 3}
+  bubble: {fileID: 436375792}
   buttons:
   - {fileID: 1742377598}
   - {fileID: 1802698853}
@@ -1062,7 +1075,7 @@ RectTransform:
   m_GameObject: {fileID: 662049993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.0078124995, y: 0.0078124995, z: 0.0078124995}
+  m_LocalScale: {x: 0.007812501, y: 0.007812501, z: 0.007812501}
   m_Children:
   - {fileID: 1617443770}
   - {fileID: 701886317}
@@ -1807,7 +1820,7 @@ RectTransform:
   m_GameObject: {fileID: 1309491356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.0078124995, y: 0.0078124995, z: 0.0078124995}
+  m_LocalScale: {x: 0.007812501, y: 0.007812501, z: 0.007812501}
   m_Children:
   - {fileID: 548872022}
   - {fileID: 1046819483}
@@ -2146,7 +2159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1553527574
 MonoBehaviour:
   m_ObjectHideFlags: 0
