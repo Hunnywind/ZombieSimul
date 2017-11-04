@@ -28,11 +28,28 @@ public class DialogMng : Singleton<DialogMng> {
     }
     public void ShowDialog()
     {
-        //Stopwatch sw = new Stopwatch();
-        //sw.Start();
         var ranValue = Random.Range(0, _qData.Count);
         _uiControl.SetTalk(_qData[ranValue]["Question"]);
-        
+        switch (_qData[ranValue]["Face"])
+        {
+            case "0":
+                _zombie.TransCharacter(Zombie.Face.Normal);
+                break;
+            case "1":
+                _zombie.TransCharacter(Zombie.Face.Happy);
+                break;
+            case "2":
+                _zombie.TransCharacter(Zombie.Face.Sadness);
+                break;
+            case "3":
+                _zombie.TransCharacter(Zombie.Face.Anger);
+                break;
+            case "4":
+                _zombie.TransCharacter(Zombie.Face.Surprise);
+                break;
+            default:
+                break;
+        }
 
         int buttonNum = 0;
         for (int i = 0; i < _aData.Count; i++)
@@ -44,8 +61,6 @@ public class DialogMng : Singleton<DialogMng> {
                 buttonNum++;
             }
         }
-        //sw.Stop();
-        //UnityEngine.Debug.Log(sw.ElapsedMilliseconds.ToString() + "ms");
     }
     public void Response(int answerNum)
     {
