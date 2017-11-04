@@ -106,21 +106,55 @@ public class UI_control : MonoBehaviour {
 	public void SetAnswer(int num, string texting){
 
 			buttontexts [num].text = texting; 
+	
+	
 	}
 
 
 	public void ButtonEvent(int num)
 	{
         DialogMng.GetInstance.Response(num);
+	}
+
+
+	public Animator [] buttons = new Animator[3];
+
+	bool poping=false;
+	bool pushing=false;
+	public void Buttondown(int num)
+	{
+	
+		if (poping == false&&pushing==false) {
+			pushing = true;
+			buttons [num].SetTrigger ("push");
+		}
+	}
+	public void Buttonup(int num)
+	{
+		if (poping == false) {
+			buttons [num].SetTrigger ("up");
+			pushing = false;
+
+		}
+	}
+	public void Buttonpoping(int num)
+	{
+		if (poping == false) {
+			buttons [num].SetTrigger ("poping");
+			poping = true;
+			pushing = false;
+			ButtonEvent(num);
+		}
+	}
 
 
 
+	void update()
+	{
 
 
 
 	}
-
-
 
 
 
