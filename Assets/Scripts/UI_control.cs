@@ -3,17 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Face
-{
-	Normal=0,
-	Anger=1,
-	Happy=2
-}
-
-public enum Pose
-{
-	Normal=0
-}
 
 public enum Stat
 {
@@ -45,7 +34,10 @@ public class UI_control : MonoBehaviour {
 	void Start()
 	{
 		Zombiescript = GameObject.Find ("zombie").GetComponent<Zombie> ();
-
+		value[0]=Zombiescript._love;
+		value[1]=Zombiescript._hungry;
+		value[2]=Zombiescript._life;
+		SetParameter ();
 	}
 
 
@@ -67,7 +59,14 @@ public class UI_control : MonoBehaviour {
 
 			if(bar [i].value!=value[i])
 			{
-				float temp = 100f * Time.deltaTime;
+				float temp;
+				if(i<2)
+				temp = 100f * Time.deltaTime;
+				else
+				temp = 10f * Time.deltaTime;
+
+
+
 				if (value [i] - bar [i].value > 0 && value [i] - bar [i].value > temp)
 					bar [i].value += temp;
 				else if (value [i] - bar [i].value < 0 && bar [i].value - value [i] > temp)
@@ -80,9 +79,24 @@ public class UI_control : MonoBehaviour {
 
 	}
 
+	void SetParameter()
+	{
+
+		for (int i = 0; i < 3; i++) {
+
+			if(bar [i].value!=value[i])
+
+				bar [i].value =value[i];
+
+		}
+
+	}
+
 
 	public void SetTalk(string texting)
 	{
+
+
 
 		charactertext.text = texting;
 

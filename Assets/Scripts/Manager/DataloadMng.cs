@@ -14,9 +14,9 @@ public class DataloadMng : Singleton<DataloadMng> {
 	// Use this for initialization
 	void Awake () {
 	
-		LoveStat = PlayerPrefs.GetInt ("LoveStat", 0);
-		HungerStat = PlayerPrefs.GetInt ("HungerStat", 0);
-		LifeStat = PlayerPrefs.GetInt ("LifeStat", 0);
+		LoveStat = PlayerPrefs.GetInt ("LoveStat", 50);
+		HungerStat = PlayerPrefs.GetInt ("HungerStat", 50);
+		LifeStat = PlayerPrefs.GetInt ("LifeStat", 10);
 		TextLine = PlayerPrefs.GetInt ("TextLine", 0);
 		DontDestroyOnLoad (gameObject);
 		
