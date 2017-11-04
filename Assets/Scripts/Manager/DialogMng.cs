@@ -75,7 +75,7 @@ public class DialogMng : Singleton<DialogMng> {
 
 		    for (int i = 0; i < _aData.Count; i++) {
 			    if (_aData [i] ["Qid"].Equals (ranValue.ToString ())) {
-                    buttonNum = Random.Range(0, ranNumList.Count);
+                    buttonNum = ranNumList[Random.Range(0, ranNumList.Count)];
 				    _uiControl.SetAnswer (buttonNum, _aData [i] ["Answer"], _aData[i]["Love"], _aData[i]["Hunger"], _aData[i]["Life"]);
 				    _answerId [buttonNum] = i;
                     ranNumList.Remove(buttonNum);
