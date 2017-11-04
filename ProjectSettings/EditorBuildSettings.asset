@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: 81049ba119fbbad44868fcb1d6c518a6
   - enabled: 1
-    path: Assets/Scenes/main_scene.unity
-    guid: dabc40f993845224fa0b2ae52df43fde
+    path: Assets/Scenes/ReloadScene.unity
+    guid: 279cdaea88cd1974080a567bda2e3d0b
