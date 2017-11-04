@@ -85,7 +85,7 @@ public class Zombie : MonoBehaviour {
 
 		if (_life <= 0)
 			fadecontrol.fadeout (0);
-		else if (_hungry <= 0)
+		else if (_hungry >= 100)
 			fadecontrol.fadeout (1);
 	StartCoroutine ("TransCharacterSupporter");
         Statchanges ();
