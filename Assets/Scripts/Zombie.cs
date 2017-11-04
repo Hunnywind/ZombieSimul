@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Zombie : MonoBehaviour {
 	public int _love{ get; private set;}
 	public int _hungry{ get; private set;}
 	public int _life{ get; private set;}
 
-	public Sprite [] head = new Sprite[5]; //머리 파츠
-	public Sprite [] body = new Sprite[1]; //바디 파츠
-	public SpriteRenderer headOn; //현재 머리
-	public SpriteRenderer bodyOn; //현재 바디
+	public Sprite [] head = new Sprite[15]; //머리 파츠
+	public Sprite [] body = new Sprite[5]; //바디 파츠
+	public Image headOn; //현재 머리
+	public Image bodyOn; //현재 바디
 
 
 	public enum Stat
@@ -24,9 +25,9 @@ public class Zombie : MonoBehaviour {
 	{
 		Normal=0,
 		Happy=1,
-		Sad=2,
+		Sadness=2,
 		Anger=3,
-		Surp=4
+		Surprise=4
 	}
 
 	public enum Pose
@@ -41,12 +42,6 @@ public class Zombie : MonoBehaviour {
 			_hungry = DataloadMng.GetInstance.HungerStat;
 			_life = DataloadMng.GetInstance.LifeStat;
 	
-
-		SetImage ();
-
-
-
-
 	}
 
 
@@ -84,8 +79,7 @@ public class Zombie : MonoBehaviour {
 
 
 		Statchanges ();
-		SetImage ();
-
+	
 	}
 
 	public void SetParameter(Stat bartype, int stat) 	//스탯 고정
@@ -106,8 +100,14 @@ public class Zombie : MonoBehaviour {
 		}
 
 		Statchanges ();
-		SetImage ();
+
 	}
+
+
+
+
+
+
 
 
 	void Statchanges() //스탯 변동시 실행
@@ -120,14 +120,39 @@ public class Zombie : MonoBehaviour {
 
 
 
-
-
-	void SetImage () //바디 이미지 체인.
+	void Update()
 	{
 
 
-	//	headOn.sprite = head [0];
-	//	bodyOn.sprite = body [0];
+
+		TransCharacter (Face.Anger);
+
+
+
+
+
+
+
+
+	}
+
+	public void TransCharacter(Face face) //바디 이미지 체인.
+	{
+
+		int temp=(int)face;
+		int temp2;
+		if (_love > 50 && _hungry > 50) {
+
+			if (_love > _hungry)
+				temp2 = 1;
+			else
+				temp2 = 0;
+
+		} else
+			temp2 = 2;
+
+		bodyOn.sprite = body [temp];
+		headOn.sprite = body [5*temp2+temp];
 
 
 	}
