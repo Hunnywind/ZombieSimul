@@ -161,7 +161,7 @@ public class UI_control : MonoBehaviour {
 
 	public void Buttondown(int num)
 	{
-	
+        SoundMng.GetInstance.Play(2);
 		if (pushing == false) {
 			buttons [num].SetTrigger ("push");
 			pushing=true;

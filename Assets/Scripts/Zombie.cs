@@ -168,10 +168,16 @@ public class Zombie : MonoBehaviour {
 			break;
 		}
 
-		if (_life <= 0)
-			fadecontrol.fadeout (0);
-		else if (_hungry <= 0)
-			fadecontrol.fadeout (1);
+        if (_life <= 0)
+        {
+            SoundMng.GetInstance.Play(8);
+            fadecontrol.fadeout(0);
+        }
+        else if (_hungry <= 0)
+        {
+            SoundMng.GetInstance.Play(8);
+            fadecontrol.fadeout(1);
+        }
 	StartCoroutine ("TransCharacterSupporter");
         Statchanges ();
 	
@@ -283,31 +289,33 @@ public class Zombie : MonoBehaviour {
 			if (Deltaparameter [0] > 0) {
 				facetype = 4;
 				feeling.sprite = feelings [1];
-
+                SoundMng.GetInstance.Play(3);
 			}
 				else {
 				facetype = 2;
 			
 				feeling.sprite = feelings [0];
-			
-			}
+                SoundMng.GetInstance.Play(4);
+            }
 
 		} else if (Deltaparaabs [1] > (Deltaparaabs [2]*7)) {
 			if (Deltaparameter [1] > 0) {
 				facetype = 3;
 				feeling.sprite = feelings [0];
-			} else {
+                SoundMng.GetInstance.Play(4);
+            } else {
 				facetype = 1;
 				feeling.sprite = feelings [0];
+                SoundMng.GetInstance.Play(4);
 
-			}
+            }
 		
 		} else {
 			if (Deltaparameter [2] < 0) {
 				facetype = 3;	
 				feeling.sprite = feelings [0];
-
-			}
+                SoundMng.GetInstance.Play(4);
+            }
 				else
 				facetype = 0;	
 

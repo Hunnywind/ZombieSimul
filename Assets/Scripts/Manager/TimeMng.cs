@@ -20,6 +20,10 @@ public class TimeMng : Singleton<TimeMng> {
 
 public Zombie _zombie;
 
+    void Awake()
+    {
+        _day = 1;
+    }
     void Start()
     {
         Init();
@@ -43,11 +47,13 @@ public Zombie _zombie;
         if(_level > 2)
         {
             _time++;
+            SoundMng.GetInstance.Play(5);
             _level = 0;
             if(_time > 2)
             {
                 _day++;
-				if (_day == 2 || _day == 3) {
+                SoundMng.GetInstance.Play(6);
+                if (_day == 2 || _day == 3) {
 					GameObject.Find("UI_control").GetComponent<UI_control>().daychange = true;
 				}
 		_time = 0;
@@ -57,7 +63,7 @@ public Zombie _zombie;
 					_time--;
 					_day--;
 					_zombie.CalculatingEnding ();
-		
+                    SoundMng.GetInstance.Play(7);
                     // go ending
                 }
             }
