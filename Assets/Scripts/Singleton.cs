@@ -15,7 +15,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
                 if (instance == null)
                 {
-                    Debug.Log("Nothing" + instance.ToString());
+                   Debug.Log("Nothing" + instance.ToString());
                     return null;
                 }
             }

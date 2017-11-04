@@ -1270,6 +1270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1189755199}
   - component: {fileID: 1189755200}
+  - component: {fileID: 1189755201}
   m_Layer: 0
   m_Name: DialogManager
   m_TagString: Untagged
@@ -1296,13 +1297,26 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1189755198}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f314655ce1a1e4b41a224c5f04c6279b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiControl: {fileID: 560273962}
-  _zombie: {fileID: 1309491361}
+--- !u!114 &1189755201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1189755198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfe0a3fb8c13314fb96de16f0a196e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoveStat: 0
+  HungerStat: 0
+  LifeStat: 0
+  TextLine: 0
 --- !u!1 &1309491356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,16 +1424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5f4ef319e67074eb36dfeb8da0a6c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  body:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  headOn: {fileID: 0}
-  bodyOn: {fileID: 0}
 --- !u!1 &1352672112
 GameObject:
   m_ObjectHideFlags: 0

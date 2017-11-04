@@ -31,28 +31,55 @@ public class UI_control : MonoBehaviour {
 	public Slider [] bar = new Slider[3];
 	public Text [] buttontexts = new Text[3];
 	public Text charactertext;
+	private float[] value = new float[3];
 
 	/*
-	 * TransParameter(바타입, 수치): 수치 변환
-	 * SetParameter(바타입, 수치): 수치 지정
 	 * SetTalk(텍스트): 질문, 일반 말
 	 * SetAnswer(버튼번호, 텍스트): 답(버튼)
+	 * ButtonEvent(버튼번호) : 버튼 이벤트;
 	 */
 	//bar0: love bar1: hunger bar2: life
 
+	Zombie Zombiescript;
 
-
-	public void TransParameter(Stat bartype, int stat)
+	void Start()
 	{
-		bar[(int)bartype].value +=stat;
-		if (bar [(int)bartype].value < 0)
-			bar [(int)bartype].value = 0;
+		Zombiescript = GameObject.Find ("zombie").GetComponent<Zombie> ();
+
 	}
 
-	public void SetParameter(Stat bartype, int stat)
+
+
+	void LateUpdate()
 	{
-		bar[(int)bartype].value = stat;
+
+		value[0]=Zombiescript._love;
+		value[1]=Zombiescript._hungry;
+		value[2]=Zombiescript._life;
+		TransParameter ();
+
 	}
+		
+	void TransParameter()
+	{
+
+		for (int i = 0; i < 3; i++) {
+
+			if(bar [i].value!=value[i])
+			{
+				float temp = 100f * Time.deltaTime;
+				if (value [i] - bar [i].value > 0 && value [i] - bar [i].value > temp)
+					bar [i].value += temp;
+				else if (value [i] - bar [i].value < 0 && bar [i].value - value [i] > temp)
+					bar [i].value -= temp;
+				else
+					bar [i].value = value [i];
+			}
+
+		}
+
+	}
+
 
 	public void SetTalk(string texting)
 	{
@@ -62,11 +89,9 @@ public class UI_control : MonoBehaviour {
 
 	}	
 
-
 	public void SetAnswer(int num, string texting){
 
-		buttontexts [num].text = texting; 
-
+			buttontexts [num].text = texting; 
 	}
 
 
