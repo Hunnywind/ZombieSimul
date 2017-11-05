@@ -53,9 +53,9 @@ public class EndingScene : MonoBehaviour {
 		{
 
 			fade.alpha -= Time.deltaTime;
-			TextTransform.Translate (0, Time.deltaTime, 0);
+			TextTransform.Translate (0, 0.65f*Time.deltaTime, 0);
 			if (Input.GetMouseButton (0))
-				Time.timeScale = 3;
+				Time.timeScale = 5;
 			else
 				Time.timeScale = 1;
 
